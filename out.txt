@@ -1,0 +1,2769 @@
+==> ./Cargo.toml
+
+[package]
+name = "ngux"
+version = "0.4.0"
+edition = "2018"
+license = "MIT"
+description = "Tree command, improved."
+readme = "README.md"
+exclude = ["/.github/*", "alias_demo.gif", "flake.nix", "flake.lock", "scripts/*", "fixtures/*"]
+keywords = ["cli", "tool", "filesystem"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+atty = "0.2"
+clap = { version = "3.1.8", features = ["derive"] }
+getopts = "0.2"
+indexmap = "1.9.0"
+lscolors = "0.10"
+regex = "1.5.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+slab = "0.4.2"
+termcolor = "1"
+walkdir = "2"
+
+[build-dependencies]
+clap = { version = "3.1.8", features = ["cargo"] }
+clap_complete = "3.1"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+
+[[bin]]
+name = "tre"
+path = "src/main.rs"
+
+
+==> ./LICENSE.md
+
+The MIT License (MIT)
+
+Copyright (c) 2015 tre contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+==> ./out.txt
+
+==> ./Cargo.toml
+
+[package]
+name = "ngux"
+version = "0.4.0"
+edition = "2018"
+license = "MIT"
+description = "Tree command, improved."
+readme = "README.md"
+exclude = ["/.github/*", "alias_demo.gif", "flake.nix", "flake.lock", "scripts/*", "fixtures/*"]
+keywords = ["cli", "tool", "filesystem"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+atty = "0.2"
+clap = { version = "3.1.8", features = ["derive"] }
+getopts = "0.2"
+indexmap = "1.9.0"
+lscolors = "0.10"
+regex = "1.5.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+slab = "0.4.2"
+termcolor = "1"
+walkdir = "2"
+
+[build-dependencies]
+clap = { version = "3.1.8", features = ["cargo"] }
+clap_complete = "3.1"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+
+[[bin]]
+name = "tre"
+path = "src/main.rs"
+
+
+==> ./LICENSE.md
+
+The MIT License (MIT)
+
+Copyright (c) 2015 tre contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+==> ./out.txt
+
+
+
+==> ./flake.lock
+
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1652442528,
+        "narHash": "sha256-ctD9BdjN7e6cBipm8k9xt+vgwlRApkvuJLSNdaVrphE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "79385ae0aacf7e02871cc8af0623123419dd7884",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
+
+
+==> ./CHANGELOG.md
+
+# main
+
+# 0.4.0
+
+- Add M1 builds to release.
+- Support installing from Nix flake.
+- Add `-E/--exclude PATTERN` option to exclude paths from results.
+- Add `-e/--color WHEN` option to control colors in output.
+- The short flag for `--version` is renamed from `-v` to `-V`.
+- Provide completion scripts for various shells in scripts/completion.
+- Add `-p/--portable` option, which enables portable paths when generating editor
+  aliases. Without this flag, editor alias only works in the same working directory
+  in which `tre` was last invoked.
+- Files untracked by git is now included in output by default.
+- Output order is now deterministic.
+
+# 0.3.6
+
+- Fixed a bug when root isn't ".", the paths for sub-directories are wrong.
+
+# 0.3.5
+
+- Fix a bug where intermediary directories from `git ls-files` don't have
+  correct path, resulting in wrong colors in output, as well as non-functioning
+  editor alias.
+
+# 0.3.4
+
+- Add '--limit/-l' option, which limits the maximum diplay depth of the file
+  tree.
+
+# 0.3.3
+
+- Hidden directory as the direct input now reveals its content. Previously the
+  input directory is not exempt from the "hiding the hidden directry"
+  functionality unless `-a` is used. Implemented by [JaSpa][] at #55.
+
+[JaSpa]: https://github.com/JaSpa
+
+# 0.3.2
+
+- Add '--directotries-only/-d' option, which limits output to only directories.
+- Add '--json/-j' option, which makes tre output JSON instead of the tree diagram.
+- Unix manual is now included as `manual/tre.1`. It maybe distributed along with
+  the executable now.
+
+# 0.3.1
+
+Support LS_COLORS, with a default set of colors.
+
+# 0.3.0
+
+Added editor/program aliasing support for Command Prompt and PowerShell on
+Windows.
+
+# 0.2.3
+
+Fixed a issue where single quote in file name prevents editor aliasing
+
+# 0.2.2
+
+Improve stability. Reduce possibility of crashing.
+
+# 0.2.1
+
+Add initial Windows build.
+
+# 0.2.0
+
+**Breaking change**: The `-e` option now takes an optional argument. When the
+argument is supplied, it'll be used as the command instead of the `$EDITOR`
+environment variable for opening the selected path. In previous setup
+instructions, the invocation in shell scripts is `tre -e PATH`. In this release,
+that command will cause `tre` to think `PATH` is the editor argument. So user
+will need to update their setup to be `tre PATH -e` instead (README has been
+updated to reflect this.)
+
+This release is rewritten from scratch in Rust, which brings some nice speed up
+and Linux binary distribution. In the near futrue, Windows PowerShell support
+could be added as well.
+
+
+
+==> ./Makefile
+
+.PHONY: check
+check:
+	@cargo check
+	@cargo clippy -- -D warnings
+
+.PHONY: build
+build:
+	@SHELL_COMPLETIONS_DIR=scripts/completion cargo build
+
+.PHONY: test
+test:
+	@cargo test
+
+.PHONY: cargo-publish
+cargo-publish:
+	@cargo publish --dry-run
+
+setup:
+	@rustup default stable
+	@rustup component add rls rust-analysis rust-src
+
+.PHONY: check-version
+check-version:
+	@scripts/check-version.py
+
+
+==> ./tests/integration_tests.rs
+
+use std::process;
+use std::fs;
+use std::path::PathBuf;
+use std::error;
+use std::str;
+use assert_cmd::prelude::CommandCargoExt;
+use std::env;
+
+#[test]
+fn respect_git_ignore() -> Result<(), Box<dyn error::Error>> {
+    let mut tre = process::Command::cargo_bin("tre")?;
+    let fixture_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+    ].iter().collect();
+    // this path is ignored by fixtures/.gitignore
+    let ignored_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+        "ignore_me"
+    ].iter().collect();
+    fs::write(ignored_path, "")?;
+    env::set_current_dir(fixture_path)?;
+    let output = tre.output()?.stdout;
+    let text = str::from_utf8(&output)?;
+    assert!(text.contains("."));
+    assert!(text.contains("── .gitignore"));
+    assert!(text.contains("── a"));
+    assert!(text.contains("── b"));
+    assert!(text.contains("── c"));
+    assert!(text.contains("── d"));
+    assert!(text.contains("── e"));
+    assert!(text.contains("── h"));
+    assert!(text.contains("── f"));
+    assert!(text.contains("── g"));
+    assert!(!text.contains("ignore_me"));
+    Ok(())
+}
+
+#[cfg(not(windows))]
+#[test]
+fn ignore_hidden() -> Result<(), Box<dyn error::Error>> {
+    let mut tre = process::Command::cargo_bin("tre")?;
+    let fixture_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+    ].iter().collect();
+    // this path is ignored by fixtures/.gitignore, but we aren't using .gitignore
+    let ignored_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+        "ignore_me"
+    ].iter().collect();
+    fs::write(ignored_path, "")?;
+    env::set_current_dir(fixture_path)?;
+    let output = tre.arg("-s").output()?.stdout;
+    let text = str::from_utf8(&output)?;
+    assert!(text.contains("."));
+    assert!(!text.contains("── .gitignore")); // hidden files should be hidden
+    assert!(text.contains("── a"));
+    assert!(text.contains("── b"));
+    assert!(text.contains("── c"));
+    assert!(text.contains("── d"));
+    assert!(text.contains("── e"));
+    assert!(text.contains("── h"));
+    assert!(text.contains("── f"));
+    assert!(text.contains("── g"));
+    assert!(text.contains("ignore_me"));
+    Ok(())
+}
+
+#[test]
+fn all_files() -> Result<(), Box<dyn error::Error>> {
+    let mut tre = process::Command::cargo_bin("tre")?;
+    let fixture_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+    ].iter().collect();
+    // this path is ignored by fixtures/.gitignore, but we aren't using .gitignore
+    let ignored_path: PathBuf = [
+        env!("CARGO_MANIFEST_DIR"),
+        "fixtures",
+        "ignore_me"
+    ].iter().collect();
+    fs::write(ignored_path, "")?;
+    env::set_current_dir(fixture_path)?;
+    let output = tre.arg("-a").output()?.stdout;
+    let text = str::from_utf8(&output)?;
+    assert!(text.contains("."));
+    assert!(text.contains("── .gitignore")); // hidden files should be hidden
+    assert!(text.contains("── a"));
+    assert!(text.contains("── b"));
+    assert!(text.contains("── c"));
+    assert!(text.contains("── d"));
+    assert!(text.contains("── e"));
+    assert!(text.contains("── h"));
+    assert!(text.contains("── f"));
+    assert!(text.contains("── g"));
+    assert!(text.contains("ignore_me"));
+    Ok(())
+}
+
+
+==> ./Cargo.lock
+
+# This file is automatically @generated by Cargo.
+# It is not intended for manual editing.
+version = 4
+
+[[package]]
+name = "aho-corasick"
+version = "0.7.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e37cfd5e7657ada45f742d6e99ca5788580b5c529dc78faf11ece6dc702656f"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "ansi_term"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d52a9bb7ec0cf484c551830a7ce27bd20d67eac647e1befb56b0be4ee39a55d2"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
+name = "assert_cmd"
+version = "2.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93ae1ddd39efd67689deb1979d80bad3bf7f2b09c6e6117c8d1f2443b5e2f83e"
+dependencies = [
+ "bstr",
+ "doc-comment",
+ "predicates",
+ "predicates-core",
+ "predicates-tree",
+ "wait-timeout",
+]
+
+[[package]]
+name = "atty"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9b39be18770d11421cdb1b9947a45dd3f37e93092cbf377614828a319d5fee8"
+dependencies = [
+ "hermit-abi",
+ "libc",
+ "winapi",
+]
+
+[[package]]
+name = "autocfg"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
+
+[[package]]
+name = "bitflags"
+version = "1.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
+
+[[package]]
+name = "bstr"
+version = "0.2.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba3569f383e8f1598449f1a423e72e99569137b47740b1da11ef19af3d5c3223"
+dependencies = [
+ "lazy_static",
+ "memchr",
+ "regex-automata",
+]
+
+[[package]]
+name = "clap"
+version = "3.1.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2dbdf4bdacb33466e854ce889eee8dfd5729abf7ccd7664d0a2d60cd384440b"
+dependencies = [
+ "atty",
+ "bitflags",
+ "clap_derive",
+ "clap_lex",
+ "indexmap",
+ "lazy_static",
+ "strsim",
+ "termcolor",
+ "textwrap",
+]
+
+[[package]]
+name = "clap_complete"
+version = "3.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da92e6facd8d73c22745a5d3cbb59bdf8e46e3235c923e516527d8e81eec14a4"
+dependencies = [
+ "clap",
+]
+
+[[package]]
+name = "clap_derive"
+version = "3.1.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "25320346e922cffe59c0bbc5410c8d8784509efb321488971081313cb1e1a33c"
+dependencies = [
+ "heck",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "clap_lex"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a37c35f1112dad5e6e0b1adaff798507497a18fceeb30cceb3bae7d1427b9213"
+dependencies = [
+ "os_str_bytes",
+]
+
+[[package]]
+name = "difflib"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6184e33543162437515c2e2b48714794e37845ec9851711914eec9d308f6ebe8"
+
+[[package]]
+name = "doc-comment"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fea41bba32d969b513997752735605054bc0dfa92b4c56bf1189f2e174be7a10"
+
+[[package]]
+name = "either"
+version = "1.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
+
+[[package]]
+name = "getopts"
+version = "0.2.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "14dbbfd5c71d70241ecf9e6f13737f7b5ce823821063188d7e46c41d371eebd5"
+dependencies = [
+ "unicode-width",
+]
+
+[[package]]
+name = "hashbrown"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "db0d4cf898abf0081f964436dc980e96670a0f36863e4b83aaacdb65c9d7ccc3"
+
+[[package]]
+name = "heck"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2540771e65fc8cb83cd6e8a237f70c319bd5c29f78ed1084ba5d50eeac86f7f9"
+
+[[package]]
+name = "hermit-abi"
+version = "0.1.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "indexmap"
+version = "1.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c6392766afd7964e2531940894cffe4bd8d7d17dbc3c1c4857040fd4b33bdb3"
+dependencies = [
+ "autocfg",
+ "hashbrown",
+]
+
+[[package]]
+name = "itertools"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a9a9d19fa1e79b6215ff29b9d6880b706147f16e9b1dbb1e4e5947b5b02bc5e3"
+dependencies = [
+ "either",
+]
+
+[[package]]
+name = "itoa"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aab8fc367588b89dcee83ab0fd66b72b50b72fa1904d7095045ace2b0c81c35"
+
+[[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
+name = "libc"
+version = "0.2.125"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5916d2ae698f6de9bfb891ad7a8d65c09d232dc58cc4ac433c7da3b2fd84bc2b"
+
+[[package]]
+name = "lscolors"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "88e4434edeec6cd16a7e8e13569af4568a66fcd6d79abd8696db22dd95f920e6"
+dependencies = [
+ "ansi_term",
+]
+
+[[package]]
+name = "memchr"
+version = "2.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
+
+[[package]]
+name = "ngux"
+version = "0.4.0"
+dependencies = [
+ "assert_cmd",
+ "atty",
+ "clap",
+ "clap_complete",
+ "getopts",
+ "indexmap",
+ "lscolors",
+ "regex",
+ "serde",
+ "serde_json",
+ "slab",
+ "termcolor",
+ "walkdir",
+]
+
+[[package]]
+name = "os_str_bytes"
+version = "6.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "029d8d0b2f198229de29dca79676f2738ff952edf3fde542eb8bf94d8c21b435"
+
+[[package]]
+name = "predicates"
+version = "2.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a5aab5be6e4732b473071984b3164dbbfb7a3674d30ea5ff44410b6bcd960c3c"
+dependencies = [
+ "difflib",
+ "itertools",
+ "predicates-core",
+]
+
+[[package]]
+name = "predicates-core"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da1c2388b1513e1b605fcec39a95e0a9e8ef088f71443ef37099fa9ae6673fcb"
+
+[[package]]
+name = "predicates-tree"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4d86de6de25020a36c6d3643a86d9a6a9f552107c0559c60ea03551b5e16c032"
+dependencies = [
+ "predicates-core",
+ "termtree",
+]
+
+[[package]]
+name = "proc-macro-error"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da25490ff9892aab3fcf7c36f08cfb902dd3e71ca0f9f9517bea02a73a5ce38c"
+dependencies = [
+ "proc-macro-error-attr",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "version_check",
+]
+
+[[package]]
+name = "proc-macro-error-attr"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1be40180e52ecc98ad80b184934baf3d0d29f979574e439af5a55274b35f869"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "version_check",
+]
+
+[[package]]
+name = "proc-macro2"
+version = "1.0.38"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9027b48e9d4c9175fa2218adf3557f91c1137021739951d4932f5f8268ac48aa"
+dependencies = [
+ "unicode-xid",
+]
+
+[[package]]
+name = "quote"
+version = "1.0.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1feb54ed693b93a84e14094943b84b7c4eae204c512b7ccb95ab0c66d278ad1"
+dependencies = [
+ "proc-macro2",
+]
+
+[[package]]
+name = "regex"
+version = "1.5.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a11647b6b25ff05a515cb92c365cec08801e83423a235b51e231e1808747286"
+dependencies = [
+ "aho-corasick",
+ "memchr",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-automata"
+version = "0.1.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c230d73fb8d8c1b9c0b3135c5142a8acee3a0558fb8db5cf1cb65f8d7862132"
+
+[[package]]
+name = "regex-syntax"
+version = "0.6.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
+
+[[package]]
+name = "ryu"
+version = "1.0.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
+
+[[package]]
+name = "same-file"
+version = "1.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502"
+dependencies = [
+ "winapi-util",
+]
+
+[[package]]
+name = "serde"
+version = "1.0.137"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "61ea8d54c77f8315140a05f4c7237403bf38b72704d031543aa1d16abbf517d1"
+dependencies = [
+ "serde_derive",
+]
+
+[[package]]
+name = "serde_derive"
+version = "1.0.137"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f26faba0c3959972377d3b2d306ee9f71faee9714294e41bb777f83f88578be"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "serde_json"
+version = "1.0.81"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b7ce2b32a1aed03c558dc61a5cd328f15aff2dbc17daad8fb8af04d2100e15c"
+dependencies = [
+ "itoa",
+ "ryu",
+ "serde",
+]
+
+[[package]]
+name = "slab"
+version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eb703cfe953bccee95685111adeedb76fabe4e97549a58d16f03ea7b9367bb32"
+
+[[package]]
+name = "strsim"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
+
+[[package]]
+name = "syn"
+version = "1.0.93"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "04066589568b72ec65f42d65a1a52436e954b168773148893c020269563decf2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-xid",
+]
+
+[[package]]
+name = "termcolor"
+version = "1.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bab24d30b911b2376f3a13cc2cd443142f0c81dda04c118693e35b3835757755"
+dependencies = [
+ "winapi-util",
+]
+
+[[package]]
+name = "termtree"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "507e9898683b6c43a9aa55b64259b721b52ba226e0f3779137e50ad114a4c90b"
+
+[[package]]
+name = "textwrap"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b1141d4d61095b28419e22cb0bbf02755f5e54e0526f97f1e3d1d160e60885fb"
+
+[[package]]
+name = "unicode-width"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ed742d4ea2bd1176e236172c8429aaf54486e7ac098db29ffe6529e0ce50973"
+
+[[package]]
+name = "unicode-xid"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "957e51f3646910546462e67d5f7599b9e4fb8acdd304b087a6494730f9eebf04"
+
+[[package]]
+name = "version_check"
+version = "0.9.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
+
+[[package]]
+name = "wait-timeout"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f200f5b12eb75f8c1ed65abd4b2db8a6e1b138a20de009dacee265a2498f3f6"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "walkdir"
+version = "2.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "808cf2735cd4b6866113f648b791c6adc5714537bc222d9347bb203386ffda56"
+dependencies = [
+ "same-file",
+ "winapi",
+ "winapi-util",
+]
+
+[[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
+name = "winapi-util"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "70ec6ce85bb158151cae5e5c87f95a8e97d2c0c4b001223f33a334e3ce5de178"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+
+
+==> ./build.rs
+
+use clap::CommandFactory;
+use clap_complete::{generate_to, Shell};
+use std::env;
+use std::fs;
+use Shell::*;
+
+include!("src/cli.rs");
+
+fn main() {
+    let outdir = env::var("SHELL_COMPLETIONS_DIR")
+        .or_else(|_| env::var("OUT_DIR"))
+        .unwrap();
+    fs::create_dir_all(&outdir).unwrap();
+    let mut cmd = Interface::command();
+    for shell in [Bash, PowerShell, Fish, Elvish, Zsh] {
+        generate_to(shell, &mut cmd, "tre", &outdir).unwrap();
+    }
+
+    println!("cargo:rerun-if-changed=src/cli.rs");
+}
+
+
+==> ./README.md
+
+<<<<<<< HEAD
+# tre
+
+A modern alternative to the `tree` command that:
+
+* lists directory structure in a tree-like diagram, like the classics.
+* skips ignored files in git repositories per `.gitignore` setting.
+* creates shell aliases for each listing that opens the files for you.
+* output in colors, respecting [LS_COLORS][] settings when they exist.
+
+Command aliasing demo:
+
+![Aliasing In Action](alias_demo.gif)
+
+… in case you missed it: `[8]` is shown in front of "README.md" and typing `e8`
+opened the file! See [how to set this up](#editor-aliasing).
+
+[LS_COLORS]: https://man7.org/linux/man-pages/man5/dir_colors.5.html
+
+## Install
+
+#### Via a package manager
+
+Tre is available in the following package managers.
+
+| Manager / OS            | Command                      |
+| ----------------------- | ---------------------------- |
+| Homebrew / macOS        | `brew install tre-command`   |
+| MacPorts / macOS        | `port install tre-tree`      |
+| Debian (testing)        | `apt install tre-command`    |
+| Scoop / Windows         | `scoop install tre-command`  |
+| Windows Package Manager | `winget install tre-command` |
+| Cargo                   | `cargo install tre-command`  |
+| AUR / Arch Linux        | `yay -S tre-command`         |
+| pkgsrc / NetBSD 9.1+    | `pkgin install tre-command`  |
+| Nixpkgs / NixOS         | Use `tre-command`            |
+| Nix flake               | Use `github:dduan/tre`       |
+
+_The commands above are basic instructions. Use your favorite alternatives if
+you have one. For example, use a config file for Nix; or other method to install
+from AUR; pkgsrc can be use on OSes other than NetBSD etc._
+
+### Pre-built executable
+
+Choose an pre-built executable from the [release page][] that fits your
+platform to download. Unpack it somewhere you'd like to run it from.
+
+[release page]: https://github.com/dduan/tre/releases
+
+### From Source
+
+1. Clone this repository: `git clone https://github.com/dduan/tre.git`.
+2. Ensure you have Rust and Cargo installed. If not, follow instruction [here](https://rustup.rs).
+3. In the root level of this repo, run `cargo build --release`.
+4. Move `target/release/tre` to somewhere in your PATH environment variable.
+
+## Editor aliasing
+
+tre provides a `-e` flag that, when used, turns on the "editor aliasing"
+feature. Some shell configuration will make this work better.
+
+### macOS/Linux
+By default, the environment variable `$EDITOR` is used as the editor. If a
+value following `-e` is supplied (`tre -e emacs` instead of `tre -e`), then
+the command specified by this value will be used instead of `$EDITOR`. Update
+the script in the next section accordingly.
+
+#### Bash or Zsh
+
+In `~/.bashrc` or `~/.zshrc` (for example)
+
+```bash
+tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
+```
+
+#### Fish
+
+Create `~/.config/fish/functions/tre.fish`:
+
+```fish
+function tre
+  command tre $argv -e; and source /tmp/tre_aliases_$USER ^/dev/null
+end
+```
+
+### Windows (10+)
+
+Instead of directly executing `tre.exe`, we'll set up a script that's
+available in your `PATH` environment variable. For example, you can add
+`\Users\yourname\bin` to your `PATH` environment variable, and created the
+script there. When you use `tre`, this script executes `tre.exe`, and do some
+additional work. The content of the script is different for PowerShell and
+Command Prompt.
+
+By default, the default program known by Windows will be used to open the
+file. If a value following `-e` is supplied (`tre -e notepad.exe` instead of
+`tre -e`), then the command specified by this value will be used. Update the
+scripts in the next section accordingly.
+
+#### PowerShell
+
+Add a `tre.ps1` file:
+
+```ps1
+if (Get-Module PSReadLine) {
+  Remove-Module -Force PSReadLine
+}
+tre.exe $args -e
+. $Env:TEMP\tre_aliases_$env:USERNAME.ps1
+```
+
+#### Command Prompt (CMD.exe)
+
+Add a `tre.bat`:
+
+```
+@echo off
+tre.exe %* -e
+call %TEMP%\tre_aliases_%USERNAME%.bat
+```
+
+### How it works
+
+The first thing you'll notice is some numbers in front of each file name in
+tre's output. If pick a number, say, "3", and enter `e3` in the shell, the file
+after "3" will open in your default program (specified by the environment
+variable `EDITOR` in macOS/Linux, and picked by Windows).
+
+Everytime tre runs with `-e`, it updates a file in a temporary directory, and
+adds an alias for each result it displays. And the additional configuration
+simply sources this file after the command. You can manually run
+
+in Bash/Zsh/Fish:
+```bash
+source /tmp/tre_aliases_$USER
+```
+
+or
+
+in PowerShell
+```ps1
+. $Env:TEMP\tre_aliases_$env:USERNAME.ps1
+```
+
+or
+
+in Command Prompt
+
+```
+call %TEMP%\tre_aliases_%USERNAME%.bat
+```
+
+… instead of configuring your system (if you are _that_ patient!).
+
+## Everything else
+
+Here's the output from `tre -h`, showing all available options provided by tre:
+
+```
+USAGE:
+    tre [OPTIONS] [PATH]
+
+ARGS:
+    <PATH>    [default: .]
+
+OPTIONS:
+    -a, --all                   Print all files and directories, including hidden ones
+    -c, --color <WHEN>          When to color the output. `automatic` means when printing to a
+                                terminal, tre will include colors; otherwise it will disable colors
+                                [default: automatic] [possible values: automatic, always, never]
+    -d, --directories           Only list directories in output
+    -e, --editor [<COMMAND>]    Create aliases for each displayed result, and add a number in front
+                                of file name to indicate the alias name. For example, a number "42"
+                                means an shell alias "e42" has been created. Running "e42" will
+                                cause the associated file or directory to be open with $EDITOR (or a
+                                default program for the file type on Windows), or a command
+                                specified along with this command
+    -E, --exclude <PATTERN>     Exclude paths matching a regex pattern. Repeatable
+    -h, --help                  Print help information
+    -j, --json                  Output JSON instead of tree diagram
+    -l, --limit <LIMIT>         Limit depth of the tree in output
+    -p, --portable              Generate portable (absolute) paths for editor aliases. By default,
+                                aliases use relative paths for better performance
+    -s, --simple                Use normal print despite gitignore settings. '-a' has higher
+                                priority
+    -V, --version               Print version information
+```
+
+If you like the editor aliasing feature, you may want to check out [ea][].
+
+[ea]: https://github.com/dduan/ea
+
+## Packaging
+
+`tre` is a standard Cargo-managed Rust project.
+A unix manual is available at `manual/tre.1`.
+Completion scripts for various shells are at `scripts/completion`.
+
+## License
+
+MIT. See `LICENSE.md`.
+=======
+# ngux
+>>>>>>> c1ab06cebd6a75ce535fc67dbd251052e1fe3ed9
+
+
+==> ./manual/tre.1
+
+.TH "TRE" "1" "2022-06-19" "TRE 0\&.4\&.0" "Tre Manual"
+
+.SH NAME
+tre \- tree, improved.
+
+.SH SYNOPSIS
+.B tre
+[path] [options]
+
+.SH DESCRIPTION
+.sp
+Display file system content in tree diagram.
+.sp
+Hidden files and those configured to be ignored by \fBgit\fR will be
+(optionally) ignored.
+.sp
+With correct configuration, each displayed file can have a shell alias created
+for it, which opens the file in the default editor or an otherwise specified
+command.
+
+.SH OPTIONS
+.TP
+\fB\-a\fR, \fB\-\-all\fR
+Print all files and directories, including hidden ones.
+
+.TP
+\fB\-d\fR, \fB\-\-directories\fR
+Only list directories in output.
+
+.TP
+\fB\-e\fR, \fB\-\-editor\fR [\fIEDITOR\fR]
+Create aliases for each displayed result in /tmp/tre_aliases_$USER, and add
+a number in front of file name to indicate the alias name. For example, a number
+"42" means an shell alias "e42" has been created. Running "e42" will cause the
+associated file or directory to be open with $EDITOR, or a command specified
+along with this command.
+
+.TP
+\fB\-j\fR, \fB\-\-json\fR
+Output JSON instead of tree diagram.
+
+.TP
+\fB\-l\fR, \fB\-\-limit\fR [\fIDEPTH\fR]
+Limit display depth file tree output.
+
+.TP
+\fB\-s\fR, \fB\-\-simple\fR
+Use normal print despite gitignore settings. '-a' has higher priority.
+
+.TP
+\fB\-E\fR, \fB\-\-exclude\fR \fIPATTERN\fR
+Exclude paths matching a regex pattern. Repeatable.
+
+.TP
+\fB\-e\fR, \fB\-\-color\fR \fIWHEN\fR
+When to color the output. Choose from \fIautomatic\fR, \fIalways\fR, or \fInever\fR.
+\fIautomatic\fR means when printing to a terminal,
+tre will include colors; otherwise it will disable colors.
+
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Show version number.
+
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Show this help message.
+
+.SH REPORTING BUGS
+If you notice any issue, Please file a report at
+\fIhttps://github.com/dduan/tre/issues\fR
+
+.SH AUTHOR
+Daniel Duan (\fIhttps://duan.ca\fR)
+
+
+
+==> ./.gitignore
+
+.DS_Store
+/target
+**/*.rs.bk
+/result
+/.direnv
+
+==> ./flake.nix
+
+{
+  description = "Tree command, improved.";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      with nixpkgs.legacyPackages.${system};
+      let info = (fromTOML (builtins.readFile ./Cargo.toml)).package; in
+      rec {
+        packages = flake-utils.lib.flattenTree {
+          ${info.name} = rustPlatform.buildRustPackage rec {
+            pname = info.name;
+            version = info.version;
+            src = ./.;
+            cargoSha256 = "sha256-KVZO2rtw7M0qSHH5cKTraRTNOeUfsKGtEauw0nelEiY=";
+            lockFile = ./Cargo.lock;
+            nativeBuildInputs = [ installShellFiles ];
+            preFixup = ''
+              installManPage manual/tre.1
+              installShellCompletion scripts/completion/tre.{bash,fish}
+              installShellCompletion --zsh scripts/completion/_tre
+            '';
+            # this test requires package to be in a git repo to succeed
+            checkFlags = "--skip respect_git_ignore";
+          };
+        };
+        defaultPackage = packages.${info.name};
+        devShell = pkgs.mkShell {
+          buildInputs = [
+            cargo
+            clippy
+            rust-analyzer
+            rustc
+          ] ++ pkgs.lib.lists.optionals stdenv.isDarwin [
+            libiconv
+          ];
+        };
+      });
+}
+
+
+==> ./scripts/completion/tre.elv
+
+
+use builtin;
+use str;
+
+set edit:completion:arg-completer[tre] = {|@words|
+    fn spaces {|n|
+        builtin:repeat $n ' ' | str:join ''
+    }
+    fn cand {|text desc|
+        edit:complex-candidate $text &display=$text' '(spaces (- 14 (wcswidth $text)))$desc
+    }
+    var command = 'tre'
+    for word $words[1..-1] {
+        if (str:has-prefix $word '-') {
+            break
+        }
+        set command = $command';'$word
+    }
+    var completions = [
+        &'tre'= {
+            cand -e 'Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command'
+            cand --editor 'Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command'
+            cand -l 'Limit depth of the tree in output'
+            cand --limit 'Limit depth of the tree in output'
+            cand -E 'Exclude paths matching a regex pattern. Repeatable'
+            cand --exclude 'Exclude paths matching a regex pattern. Repeatable'
+            cand -c 'When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors'
+            cand --color 'When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors'
+            cand -h 'Print help information'
+            cand --help 'Print help information'
+            cand -V 'Print version information'
+            cand --version 'Print version information'
+            cand -a 'Print all files and directories, including hidden ones'
+            cand --all 'Print all files and directories, including hidden ones'
+            cand -s 'Use normal print despite gitignore settings. ''-a'' has higher priority'
+            cand --simple 'Use normal print despite gitignore settings. ''-a'' has higher priority'
+            cand -d 'Only list directories in output'
+            cand --directories 'Only list directories in output'
+            cand -j 'Output JSON instead of tree diagram'
+            cand --json 'Output JSON instead of tree diagram'
+            cand -p 'Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance'
+            cand --portable 'Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance'
+        }
+    ]
+    $completions[$command]
+}
+
+
+==> ./scripts/completion/_tre.ps1
+
+
+using namespace System.Management.Automation
+using namespace System.Management.Automation.Language
+
+Register-ArgumentCompleter -Native -CommandName 'tre' -ScriptBlock {
+    param($wordToComplete, $commandAst, $cursorPosition)
+
+    $commandElements = $commandAst.CommandElements
+    $command = @(
+        'tre'
+        for ($i = 1; $i -lt $commandElements.Count; $i++) {
+            $element = $commandElements[$i]
+            if ($element -isnot [StringConstantExpressionAst] -or
+                $element.StringConstantType -ne [StringConstantType]::BareWord -or
+                $element.Value.StartsWith('-') -or
+                $element.Value -eq $wordToComplete) {
+                break
+        }
+        $element.Value
+    }) -join ';'
+
+    $completions = @(switch ($command) {
+        'tre' {
+            [CompletionResult]::new('-e', 'e', [CompletionResultType]::ParameterName, 'Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command')
+            [CompletionResult]::new('--editor', 'editor', [CompletionResultType]::ParameterName, 'Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command')
+            [CompletionResult]::new('-l', 'l', [CompletionResultType]::ParameterName, 'Limit depth of the tree in output')
+            [CompletionResult]::new('--limit', 'limit', [CompletionResultType]::ParameterName, 'Limit depth of the tree in output')
+            [CompletionResult]::new('-E', 'E', [CompletionResultType]::ParameterName, 'Exclude paths matching a regex pattern. Repeatable')
+            [CompletionResult]::new('--exclude', 'exclude', [CompletionResultType]::ParameterName, 'Exclude paths matching a regex pattern. Repeatable')
+            [CompletionResult]::new('-c', 'c', [CompletionResultType]::ParameterName, 'When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors')
+            [CompletionResult]::new('--color', 'color', [CompletionResultType]::ParameterName, 'When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors')
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help information')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
+            [CompletionResult]::new('-V', 'V', [CompletionResultType]::ParameterName, 'Print version information')
+            [CompletionResult]::new('--version', 'version', [CompletionResultType]::ParameterName, 'Print version information')
+            [CompletionResult]::new('-a', 'a', [CompletionResultType]::ParameterName, 'Print all files and directories, including hidden ones')
+            [CompletionResult]::new('--all', 'all', [CompletionResultType]::ParameterName, 'Print all files and directories, including hidden ones')
+            [CompletionResult]::new('-s', 's', [CompletionResultType]::ParameterName, 'Use normal print despite gitignore settings. ''-a'' has higher priority')
+            [CompletionResult]::new('--simple', 'simple', [CompletionResultType]::ParameterName, 'Use normal print despite gitignore settings. ''-a'' has higher priority')
+            [CompletionResult]::new('-d', 'd', [CompletionResultType]::ParameterName, 'Only list directories in output')
+            [CompletionResult]::new('--directories', 'directories', [CompletionResultType]::ParameterName, 'Only list directories in output')
+            [CompletionResult]::new('-j', 'j', [CompletionResultType]::ParameterName, 'Output JSON instead of tree diagram')
+            [CompletionResult]::new('--json', 'json', [CompletionResultType]::ParameterName, 'Output JSON instead of tree diagram')
+            [CompletionResult]::new('-p', 'p', [CompletionResultType]::ParameterName, 'Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance')
+            [CompletionResult]::new('--portable', 'portable', [CompletionResultType]::ParameterName, 'Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance')
+            break
+        }
+    })
+
+    $completions.Where{ $_.CompletionText -like "$wordToComplete*" } |
+        Sort-Object -Property ListItemText
+}
+
+
+==> ./scripts/completion/tre.bash
+
+_tre() {
+    local i cur prev opts cmds
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    cmd=""
+    opts=""
+
+    for i in ${COMP_WORDS[@]}
+    do
+        case "${i}" in
+            "$1")
+                cmd="tre"
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    case "${cmd}" in
+        tre)
+            opts="-h -V -a -s -d -e -j -l -E -c -p --help --version --all --simple --directories --editor --json --limit --exclude --color --portable <PATH>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --editor)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -e)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --limit)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -l)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --exclude)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -E)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "automatic always never" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "automatic always never" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+    esac
+}
+
+complete -F _tre -o bashdefault -o default tre
+
+
+==> ./scripts/completion/_tre
+
+#compdef tre
+
+autoload -U is-at-least
+
+_tre() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-e+[Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command]:COMMAND: ' \
+'--editor=[Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command]:COMMAND: ' \
+'-l+[Limit depth of the tree in output]:LIMIT: ' \
+'--limit=[Limit depth of the tree in output]:LIMIT: ' \
+'*-E+[Exclude paths matching a regex pattern. Repeatable]:PATTERN: ' \
+'*--exclude=[Exclude paths matching a regex pattern. Repeatable]:PATTERN: ' \
+'-c+[When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors]:WHEN:(automatic always never)' \
+'--color=[When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors]:WHEN:(automatic always never)' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+'-a[Print all files and directories, including hidden ones]' \
+'--all[Print all files and directories, including hidden ones]' \
+'-s[Use normal print despite gitignore settings. '\''-a'\'' has higher priority]' \
+'--simple[Use normal print despite gitignore settings. '\''-a'\'' has higher priority]' \
+'-d[Only list directories in output]' \
+'--directories[Only list directories in output]' \
+'-j[Output JSON instead of tree diagram]' \
+'--json[Output JSON instead of tree diagram]' \
+'-p[Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance]' \
+'--portable[Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance]' \
+'::path:' \
+&& ret=0
+}
+
+(( $+functions[_tre_commands] )) ||
+_tre_commands() {
+    local commands; commands=()
+    _describe -t commands 'tre commands' commands "$@"
+}
+
+_tre "$@"
+
+
+==> ./scripts/completion/tre.fish
+
+complete -c tre -s e -l editor -d 'Create aliases for each displayed result, and add a number in front of file name to indicate the alias name. For example, a number "42" means an shell alias "e42" has been created. Running "e42" will cause the associated file or directory to be open with $EDITOR (or a default program for the file type on Windows), or a command specified along with this command' -r
+complete -c tre -s l -l limit -d 'Limit depth of the tree in output' -r
+complete -c tre -s E -l exclude -d 'Exclude paths matching a regex pattern. Repeatable' -r
+complete -c tre -s c -l color -d 'When to color the output. `automatic` means when printing to a terminal, tre will include colors; otherwise it will disable colors' -r -f -a "{automatic	,always	,never	}"
+complete -c tre -s h -l help -d 'Print help information'
+complete -c tre -s V -l version -d 'Print version information'
+complete -c tre -s a -l all -d 'Print all files and directories, including hidden ones'
+complete -c tre -s s -l simple -d 'Use normal print despite gitignore settings. \'-a\' has higher priority'
+complete -c tre -s d -l directories -d 'Only list directories in output'
+complete -c tre -s j -l json -d 'Output JSON instead of tree diagram'
+complete -c tre -s p -l portable -d 'Generate portable (absolute) paths for editor aliases. By default, aliases use relative paths for better performance'
+
+
+==> ./scripts/check-version.py
+
+#!/usr/bin/env python3
+
+import re
+import sys
+
+expected = re.search(r'name = "tre-command"\nversion = "(.+)"', open('Cargo.toml').read(), re.M).group(1)
+versions = {}
+versions['Cargo.lock'] = re.search(r'name = "tre-command"\nversion = "(.+)"', open('Cargo.lock').read(), re.M).group(1)
+versions['CHANGELOG.md'] = re.search(r'#\s*([0-9.]+)', open('CHANGELOG.md').read(), re.M).group(1)
+manual_match = re.search(r'.TH "TRE" "1" "[0-9-]+" "TRE (\d+)\\&.(\d+)\\&.(\d+)" "Tre Manual"', open('manual/tre.1').read())
+versions['manual/tre.1'] = "{}.{}.{}".format(manual_match.group(1), manual_match.group(2), manual_match.group(3))
+
+for file in versions:
+    if expected != versions[file]:
+        print(f"version mismatch: expected {expected}; found {versions[file]} in {file}", file=sys.stderr)
+        exit(1)
+
+
+==> ./fixtures/g
+
+
+
+==> ./fixtures/a/b/h
+
+
+
+==> ./fixtures/a/b/c/d
+
+
+
+==> ./fixtures/a/b/c/e
+
+
+
+==> ./fixtures/f
+
+
+
+==> ./fixtures/.gitignore
+
+ignore_me
+
+
+==> ./alias_demo.gif
+
+[⚠️ Could not read file]
+
+
+==> ./src/file_ops.rs
+
+use std::fs::{self, File, OpenOptions};
+use std::io::{self, Write};
+use std::path::Path;
+
+/// Reads the entire contents of a file into a string
+pub fn read_file(path: &str) -> io::Result<String> {
+    fs::read_to_string(path)
+}
+
+/// Overwrites or creates a file with given data
+pub fn write_file(path: &str, data: &str) -> io::Result<()> {
+    fs::write(path, data)
+}
+
+/// Appends data to a file, creating it if it doesn't exist
+pub fn append_file(path: &str, data: &str) -> io::Result<()> {
+    let mut file = OpenOptions::new().append(true).create(true).open(path)?;
+    writeln!(file, "{data}")?;
+    Ok(())
+}
+
+/// Recursively dumps all readable source files into a single output file
+pub fn write_all_files_to(path: &str, out_file: &str) -> io::Result<()> {
+    let mut output = File::create(out_file)?;
+    recurse_write(Path::new(path), &mut output)?;
+    Ok(())
+}
+
+/// Recursively visits directories and writes contents of each file into `output`
+fn recurse_write(dir: &Path, output: &mut File) -> io::Result<()> {
+    // Ignore common noisy or build-related directories
+    let ignored_dirs = ["target", ".git", ".idea", ".vscode", "node_modules","README.md"];
+
+    if dir.is_dir() {
+        for entry in fs::read_dir(dir)? {
+            let entry = entry?;
+            let path = entry.path();
+
+            if path.is_dir() {
+                if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                    if ignored_dirs.contains(&name) {
+                        continue;
+                    }
+                }
+                recurse_write(&path, output)?;
+            } else if path.is_file() {
+                let display_path = path.display();
+                writeln!(output, "==> {}\n", display_path)?;
+                let content = fs::read_to_string(&path)
+                    .unwrap_or_else(|_| "[⚠️ Could not read file]\n".to_string());
+                writeln!(output, "{}\n", content)?;
+            }
+        }
+    }
+    Ok(())
+}
+
+
+==> ./src/json_formatting.rs
+
+use super::file_tree::{File, FileTree, FileType, TypeSpecficData};
+use serde::Serialize;
+
+#[derive(Serialize)]
+struct SerializableTreeFile<'a> {
+    pub name: &'a String,
+    pub path: &'a String,
+}
+
+#[derive(Serialize)]
+struct SerializableTreeLink<'a> {
+    pub name: &'a String,
+    pub path: &'a String,
+    pub link: String,
+}
+
+#[derive(Serialize)]
+struct SerializableTreeDirectory<'a> {
+    pub name: &'a String,
+    pub path: &'a String,
+    pub contents: Vec<SerializableTreeNode<'a>>,
+}
+
+#[derive(Serialize)]
+#[serde(tag = "type")]
+#[serde(rename_all = "lowercase")]
+enum SerializableTreeNode<'a> {
+    File(SerializableTreeFile<'a>),
+    Link(SerializableTreeLink<'a>),
+    Directory(Box<SerializableTreeDirectory<'a>>),
+}
+
+impl SerializableTreeNode<'_> {
+    pub fn new(tree: &FileTree) -> SerializableTreeNode {
+        SerializableTreeNode::from(tree, &tree.storage[tree.root_id])
+    }
+
+    fn from<'a>(tree: &'a FileTree, file: &'a File) -> SerializableTreeNode<'a> {
+        match &file.data {
+            TypeSpecficData::File => SerializableTreeNode::File(SerializableTreeFile {
+                name: &file.display_name,
+                path: &file.path,
+            }),
+            TypeSpecficData::Directory(map) => {
+                SerializableTreeNode::Directory(Box::new(SerializableTreeDirectory {
+                    name: &file.display_name,
+                    path: &file.path,
+                    contents: map
+                        .values()
+                        .map(|id| SerializableTreeNode::from(tree, &tree.storage[*id]))
+                        .collect(),
+                }))
+            }
+            TypeSpecficData::Link(link) => SerializableTreeNode::Link(SerializableTreeLink {
+                name: &file.display_name,
+                path: &file.path,
+                link: link.clone(),
+            }),
+        }
+    }
+}
+
+pub fn format_paths(root_path: &str, children: Vec<(String, FileType)>) -> String {
+    match FileTree::new(root_path, children) {
+        Some(tree) => {
+            let node = SerializableTreeNode::new(&tree);
+            serde_json::to_string_pretty(&node).unwrap_or_else(|_| "{}".to_string())
+        }
+        None => "{}".to_string(),
+    }
+}
+
+
+==> ./src/file_tree.rs
+
+use slab::Slab;
+use indexmap::IndexMap;
+use std::fs::{self, Metadata};
+use std::path::{Component, Path, PathBuf};
+
+fn to_string(component: &Component) -> String {
+    (*component).as_os_str().to_string_lossy().into_owned()
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum FileType {
+    File,
+    Directory,
+    Link,
+}
+
+impl FileType {
+    pub fn new(meta: Metadata) -> FileType {
+        let t = meta.file_type();
+        if t.is_dir() {
+            FileType::Directory
+        } else if t.is_symlink() {
+            FileType::Link
+        } else {
+            FileType::File
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub enum TypeSpecficData {
+    File,
+    Directory(IndexMap<String, usize>),
+    Link(String),
+}
+
+#[derive(Debug, Clone)]
+pub struct File {
+    pub id: usize,
+    parent: Option<usize>,
+    pub display_name: String,
+    pub path: String,
+    pub file_type: FileType,
+    pub data: TypeSpecficData,
+}
+
+impl File {
+    pub fn children_count(&self) -> usize {
+        if let TypeSpecficData::Directory(children) = &self.data {
+            children.len()
+        } else {
+            0
+        }
+    }
+
+    pub fn children(&self) -> Option<&IndexMap<String, usize>> {
+        if let TypeSpecficData::Directory(children) = &self.data {
+            Some(children)
+        } else {
+            None
+        }
+    }
+
+    pub fn link(&self) -> Option<String> {
+        if let TypeSpecficData::Link(link) = &self.data {
+            Some(link.clone())
+        } else {
+            None
+        }
+    }
+
+    fn child_key(&self, name: &str) -> Option<usize> {
+        if let TypeSpecficData::Directory(children) = &self.data {
+            children.get(name).cloned()
+        } else {
+            None
+        }
+    }
+
+    fn add_child(&mut self, name: &str, id: usize) {
+        if let TypeSpecficData::Directory(children) = &mut self.data {
+            children.insert(name.to_string(), id);
+        }
+    }
+
+    #[cfg(test)]
+    fn is_file(&self) -> bool {
+        if let TypeSpecficData::File = self.data {
+            true
+        } else {
+            false
+        }
+    }
+
+    #[cfg(test)]
+    fn is_dir(&self) -> bool {
+        if let TypeSpecficData::Directory(_) = self.data {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+pub struct FileTree {
+    pub storage: Slab<Box<File>>,
+    pub root_id: usize,
+}
+
+impl FileTree {
+    pub fn new(root_path: &str, children: Vec<(String, FileType)>) -> Option<FileTree> {
+        let mut slab = Slab::new();
+        let root_entry = slab.vacant_entry();
+        let root_id = root_entry.key();
+
+        let root_prefix_len: usize = Path::new(root_path)
+            .components()
+            .filter(|c| !matches!(c, Component::CurDir))
+            .count();
+
+        let root = Box::new(File {
+            id: root_id,
+            parent: None,
+            display_name: root_path.to_string(),
+            path: root_path.to_string(),
+            file_type: FileType::Directory,
+            data: TypeSpecficData::Directory(IndexMap::new()),
+        });
+        root_entry.insert(root);
+
+        for (path, meta) in children {
+            let data_option: Option<TypeSpecficData> = match meta {
+                FileType::Link => fs::read_link(&path)
+                    .ok()
+                    .and_then(|path| path.to_str().map(|x| x.to_string()))
+                    .map(TypeSpecficData::Link),
+                FileType::Directory => Some(TypeSpecficData::Directory(IndexMap::new())),
+                FileType::File => Some(TypeSpecficData::File),
+            };
+
+            let data = data_option.unwrap();
+
+            let mut ancestry: Vec<Component> = Path::new(&path)
+                .components()
+                .filter(|c| !matches!(c, Component::CurDir))
+                .skip(root_prefix_len)
+                .collect();
+
+            let ancestor = ancestry.pop().map(|x| to_string(&x));
+
+            if ancestor.is_none() {
+                continue;
+            }
+
+            let path_name = ancestor.unwrap();
+
+            // Handle intermidiary directories.
+            let mut current_acestor_id = root_id;
+            let mut current_ancestor_path = PathBuf::new();
+            current_ancestor_path.push(root_path);
+            for ancestor_name in ancestry {
+                current_ancestor_path.push(ancestor_name);
+                let display_name = to_string(&ancestor_name);
+                if let Some(child_key) = slab[current_acestor_id].child_key(&display_name) {
+                    current_acestor_id = child_key;
+                } else {
+                    let new_entry = slab.vacant_entry();
+                    let new_id = new_entry.key();
+                    new_entry.insert(Box::new(File {
+                        id: new_id,
+                        parent: Some(current_acestor_id),
+                        display_name: display_name.clone(),
+                        path: current_ancestor_path.to_string_lossy().into_owned(),
+                        file_type: FileType::Directory,
+                        data: TypeSpecficData::Directory(IndexMap::new()),
+                    }));
+                    slab[current_acestor_id].add_child(&display_name, new_id);
+                    current_acestor_id = new_id;
+                }
+            }
+
+            // Finally, insert the node.
+            let new_entry = slab.vacant_entry();
+            let new_id = new_entry.key();
+            new_entry.insert(Box::new(File {
+                id: new_id,
+                parent: Some(current_acestor_id),
+                display_name: path_name.clone(),
+                path,
+                file_type: meta,
+                data,
+            }));
+            slab[current_acestor_id].add_child(&path_name, new_id);
+        }
+
+        Some(FileTree {
+            storage: slab,
+            root_id,
+        })
+    }
+
+    pub fn get(&self, id: usize) -> &File {
+        &self.storage[id]
+    }
+
+    pub fn get_root(&self) -> &File {
+        self.get(self.root_id)
+    }
+
+    pub fn get_parent(&self, file: &File) -> Option<&File> {
+        file.parent.map(|id| self.get(id))
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::{FileTree, FileType, TypeSpecficData};
+    use std::path::Path;
+
+    #[test]
+    fn tree_construction() {
+        let tree = FileTree::new(
+            ".",
+            vec![
+                ("a".to_string(), FileType::File),
+                ("b/c/d".to_string(), FileType::File),
+            ],
+        )
+        .unwrap();
+
+        let root = tree.get(tree.root_id);
+        assert!(root.is_dir());
+        if let TypeSpecficData::Directory(root_chilren) = &root.data {
+            assert_eq!(root_chilren.len(), 2);
+            let a_id = root_chilren.get("a").expect("a exists");
+            let a = tree.get(*a_id);
+            assert!(a.is_file());
+            assert_eq!(Path::new(&a.path), Path::new("a"));
+            let b_id = root_chilren.get("b").expect("b exists");
+            let b = tree.get(*b_id);
+            assert!(b.is_dir());
+            assert_eq!(Path::new(&b.path), Path::new("./b"));
+            if let TypeSpecficData::Directory(b_children) = &b.data {
+                assert_eq!(b_children.len(), 1);
+                let c_id = b_children.get("c").expect("c exists");
+                let c = tree.get(*c_id);
+                assert!(c.is_dir());
+                assert_eq!(Path::new(&c.path), Path::new("./b/c"));
+                if let TypeSpecficData::Directory(c_children) = &c.data {
+                    assert_eq!(c_children.len(), 1);
+                    let d_id = c_children.get("d").expect("d exists");
+                    let d = tree.get(*d_id);
+                    assert!(d.is_file());
+                    assert_eq!(Path::new(&d.path), Path::new("b/c/d"));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn tree_construction_with_root_dir() {
+        let tree = FileTree::new(
+            "b",
+            vec![
+                ("b/e".to_string(), FileType::File),
+                ("b/c/d".to_string(), FileType::File),
+            ],
+        )
+        .unwrap();
+
+        let root = tree.get(tree.root_id);
+        assert!(root.is_dir());
+        assert_eq!(Path::new(&root.path), Path::new("b"));
+        if let TypeSpecficData::Directory(b_children) = &root.data {
+            assert_eq!(b_children.len(), 2);
+            let c_id = b_children.get("c").expect("c exists");
+            let c = tree.get(*c_id);
+            assert!(c.is_dir());
+            let e_id = b_children.get("e").expect("e exists");
+            let e = tree.get(*e_id);
+            assert!(e.is_file());
+            assert_eq!(Path::new(&c.path), Path::new("b/c"));
+            if let TypeSpecficData::Directory(c_children) = &c.data {
+                assert_eq!(c_children.len(), 1);
+                let d_id = c_children.get("d").expect("d exists");
+                let d = tree.get(*d_id);
+                assert!(d.is_file());
+                assert_eq!(Path::new(&d.path), Path::new("b/c/d"));
+            }
+        }
+    }
+}
+
+
+==> ./src/path_finders.rs
+
+use crate::file_tree::FileType;
+use std::process::Command;
+use std::{fs, path};
+use walkdir::{DirEntry, WalkDir};
+
+pub fn find_all_paths(
+    root: &str,
+    directories_only: bool,
+    max_depth: usize,
+) -> Vec<(String, FileType)> {
+    let mut result: Vec<(String, FileType)> = Vec::new();
+    for entry in WalkDir::new(root)
+        .max_depth(max_depth)
+        .into_iter()
+        .filter_map(|e| e.ok())
+    {
+        if let Ok(meta) = entry.metadata() {
+            if directories_only && !meta.is_dir() {
+                continue;
+            }
+
+            if let Some(path) = entry.path().to_str() {
+                let path = path.to_string();
+                if path != root {
+                    result.push((path, FileType::new(meta)))
+                }
+            }
+        }
+    }
+    result
+}
+
+fn is_hidden(name: &str) -> bool {
+    name != "." && name.starts_with('.') && name != ".."
+}
+
+fn should_include(entry: &DirEntry, root: &str) -> bool {
+    entry
+        .file_name()
+        .to_str()
+        .map(|s| !is_hidden(s) || s == root)
+        .unwrap_or(true)
+}
+
+pub fn find_non_hidden_paths(
+    root: &str,
+    directories_only: bool,
+    max_depth: usize,
+) -> Vec<(String, FileType)> {
+    let walker = WalkDir::new(root).max_depth(max_depth).into_iter();
+    let mut result: Vec<(String, FileType)> = Vec::new();
+
+    for entry in walker
+        .filter_entry(|e| should_include(e, root))
+        .filter_map(|e| e.ok())
+    {
+        if let Ok(meta) = entry.metadata() {
+            if directories_only && !meta.is_dir() {
+                continue;
+            }
+            if let Some(path) = entry.path().to_str() {
+                let path = path.to_string();
+                if path != root {
+                    result.push((path, FileType::new(meta)))
+                }
+            }
+        }
+    }
+    result
+}
+
+pub fn find_non_git_ignored_paths(
+    root: &str,
+    directories_only: bool,
+    max_depth: usize,
+) -> Vec<(String, FileType)> {
+    let mut git_command = Command::new("git");
+    if directories_only {
+        git_command
+            .arg("ls-tree")
+            .arg("-r")
+            .arg("-d")
+            .arg("--name-only")
+            .arg("HEAD")
+            .arg(root);
+    } else {
+        git_command
+            .arg("ls-files")
+            .arg("-o")
+            .arg("-c")
+            .arg("--exclude-standard")
+            .arg(root);
+    };
+
+    if let Ok(git_output) = git_command.output() {
+        if git_output.status.success() {
+            if let Ok(paths_buf) = String::from_utf8(git_output.stdout) {
+                return paths_buf
+                    .split('\n')
+                    .filter_map(|p| {
+                        let path_string = if max_depth != std::usize::MAX {
+                            path::Path::new(p)
+                                .components()
+                                .take(max_depth)
+                                .collect::<path::PathBuf>()
+                                .as_path()
+                                .to_str()
+                                .unwrap()
+                                .to_string()
+                        } else {
+                            p.to_string()
+                        };
+                        fs::metadata(&path_string)
+                            .map(|m| (path_string, FileType::new(m)))
+                            .ok()
+                    })
+                    .collect();
+            }
+        }
+    }
+
+    find_non_hidden_paths(root, directories_only, max_depth)
+}
+
+
+==> ./src/tre.rs
+
+use crate::cli;
+use crate::diagram_formatting;
+use crate::file_tree::FileType;
+use crate::json_formatting;
+use crate::output;
+use crate::path_finders;
+use lscolors::LsColors;
+use regex::Regex;
+
+#[derive(Debug, Clone)]
+pub enum Mode {
+    FollowGitIgnore,
+    #[allow(dead_code)]
+    ExcludeHiddenFiles,
+    ShowAllFiles,
+}
+
+#[derive(Debug, Clone)]
+pub struct RunOptions {
+    pub editor: Option<Option<String>>,
+    pub mode: Mode,
+    pub directories_only: bool,
+    pub output_json: bool,
+    pub root: String,
+    pub max_depth: Option<usize>,
+    pub exclude_patterns: Vec<Regex>,
+    pub coloring: cli::Coloring,
+    pub portable_aliases: bool,
+}
+
+#[cfg(not(windows))]
+fn mode(inputs: &cli::Interface) -> Mode {
+    if inputs.all {
+        Mode::ShowAllFiles
+    } else if inputs.simple {
+        Mode::ExcludeHiddenFiles
+    } else {
+        Mode::FollowGitIgnore
+    }
+}
+
+#[cfg(windows)]
+fn mode(inputs: &cli::Interface) -> Mode {
+    if inputs.all {
+        Mode::ShowAllFiles
+    } else {
+        Mode::FollowGitIgnore
+    }
+}
+
+impl From<cli::Interface> for RunOptions {
+    fn from(inputs: cli::Interface) -> Self {
+        let mode = mode(&inputs);
+        RunOptions {
+            editor: inputs.editor,
+            mode,
+            directories_only: inputs.directories,
+            output_json: inputs.json,
+            root: inputs.path,
+            max_depth: inputs.limit,
+            exclude_patterns: inputs
+                .exclude
+                .iter()
+                .filter_map(|p| regex::Regex::new(p).ok())
+                .collect(),
+            coloring: inputs.color,
+            portable_aliases: inputs.portable,
+        }
+    }
+}
+
+pub fn run(option: RunOptions) {
+    let directories_only = option.directories_only;
+    let max_depth = option.max_depth.unwrap_or(std::usize::MAX);
+    let paths: Vec<(String, FileType)> = match option.mode {
+        Mode::FollowGitIgnore => {
+            path_finders::find_non_git_ignored_paths(&option.root, directories_only, max_depth)
+        }
+        Mode::ExcludeHiddenFiles => {
+            path_finders::find_non_hidden_paths(&option.root, directories_only, max_depth)
+        }
+        Mode::ShowAllFiles => {
+            path_finders::find_all_paths(&option.root, directories_only, max_depth)
+        }
+    };
+
+    let paths = if option.exclude_patterns.is_empty() {
+        paths
+    } else {
+        paths
+            .into_iter()
+            .filter(|(path, _)| {
+                let mut pattern_iters = option.exclude_patterns.iter();
+                !pattern_iters.any(|p| p.is_match(path))
+            })
+            .collect()
+    };
+
+    if option.output_json {
+        println!("{}", json_formatting::format_paths(&option.root, paths));
+    } else {
+        let format_result =
+            diagram_formatting::format_paths(&option.root, paths, option.portable_aliases);
+        let lscolors = LsColors::from_env().unwrap_or_default();
+        let coloring = match option.coloring {
+            cli::Coloring::Never => None,
+            cli::Coloring::Always => Some(&lscolors),
+            cli::Coloring::Automatic => {
+                if atty::is(atty::Stream::Stdout) {
+                    Some(&lscolors)
+                } else {
+                    None
+                }
+            }
+        };
+        if let Some(editor) = option.editor {
+            output::print_entries(&format_result, true, coloring);
+            let editor = if cfg!(windows) {
+                editor.unwrap_or_else(|| "".to_string())
+            } else {
+                editor.unwrap_or_else(|| "$EDITOR".to_string())
+            };
+            output::create_edit_aliases(&editor, &format_result);
+        } else {
+            output::print_entries(&format_result, false, coloring);
+        }
+    }
+}
+
+
+==> ./src/diagram_formatting.rs
+
+use super::file_tree::{File, FileTree, FileType};
+use std::collections::HashMap;
+use std::fs;
+
+#[derive(Debug, Clone, PartialEq)]
+enum PrefixSegment {
+    ShapeL, // "└── "
+    ShapeT, // "├── "
+    ShapeI, // "│   "
+    Empty,  // "    "
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct FormattedEntry {
+    pub name: String,
+    pub path: String,
+    pub prefix: String,
+    pub link: Option<String>,
+}
+
+fn make_prefix(tree: &FileTree, file: &File, format_history: &HashMap<usize, usize>) -> String {
+    let mut segments = Vec::new();
+    let mut current = file;
+    if let Some(ancestor) = tree.get_parent(file) {
+        let count = format_history.get(&ancestor.id).unwrap_or(&0);
+        if *count >= ancestor.children_count() - 1 {
+            segments.push(PrefixSegment::ShapeL);
+        } else {
+            segments.push(PrefixSegment::ShapeT);
+        }
+        current = ancestor;
+    }
+
+    while let Some(ancestor) = tree.get_parent(current) {
+        let count = format_history.get(&ancestor.id).unwrap_or(&0);
+        if *count == ancestor.children_count() {
+            segments.push(PrefixSegment::Empty);
+        } else {
+            segments.push(PrefixSegment::ShapeI);
+        }
+        current = ancestor;
+    }
+
+    segments.reverse();
+    segments.iter().fold(String::new(), |s, seg| {
+        s + match seg {
+            PrefixSegment::ShapeL => "└── ",
+            PrefixSegment::ShapeT => "├── ",
+            PrefixSegment::ShapeI => "│   ",
+            PrefixSegment::Empty => "    ",
+        }
+    })
+}
+
+fn format_file(
+    tree: &FileTree,
+    file: &File,
+    format_history: &mut HashMap<usize, usize>,
+    result: &mut Vec<FormattedEntry>,
+    make_absolute: bool,
+) {
+    let prefix = make_prefix(tree, file, format_history);
+    let path = if make_absolute {
+        fs::canonicalize(&file.path).unwrap().display().to_string()
+    } else {
+        file.path.clone()
+    };
+
+    result.push(FormattedEntry {
+        name: file.display_name.clone(),
+        path,
+        prefix,
+        link: file.link(),
+    });
+
+    if let Some(parent) = tree.get_parent(file) {
+        if let Some(&n) = format_history.get(&parent.id) {
+            format_history.insert(parent.id, n + 1);
+        }
+    }
+
+    if let FileType::Directory = file.file_type {
+        format_history.insert(file.id, 0);
+    }
+
+    if let Some(children) = file.children() {
+        for child_id in children.values() {
+            format_file(
+                tree,
+                tree.get(*child_id),
+                format_history,
+                result,
+                make_absolute,
+            );
+        }
+    }
+}
+
+pub fn format_paths(
+    root_path: &str,
+    children: Vec<(String, FileType)>,
+    make_absolute: bool,
+) -> Vec<FormattedEntry> {
+    let mut history = HashMap::new();
+    let mut result = Vec::new();
+    match FileTree::new(root_path, children) {
+        Some(tree) => {
+            let root = tree.get_root();
+            format_file(&tree, root, &mut history, &mut result, make_absolute);
+            result
+        }
+        None => Vec::new(),
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::FormattedEntry;
+    use crate::file_tree::FileType;
+    use std::path;
+
+    #[test]
+    fn formatting_works() {
+        let formatted = super::format_paths(
+            ".",
+            vec![
+                ("a".to_string(), FileType::File),
+                (format!("b{}c", path::MAIN_SEPARATOR), FileType::File),
+            ],
+            false,
+        );
+
+        let bc_path = format!("b{}c", path::MAIN_SEPARATOR);
+        let b_path = format!(".{}b", path::MAIN_SEPARATOR);
+        let variant0 = vec![
+            FormattedEntry {
+                name: ".".to_string(),
+                path: ".".to_string(),
+                prefix: String::new(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "a".to_string(),
+                path: "a".to_string(),
+                prefix: "├── ".to_string(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "b".to_string(),
+                path: b_path.clone(),
+                prefix: "└── ".to_string(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "c".to_string(),
+                path: bc_path.clone(),
+                prefix: "    └── ".to_string(),
+                link: None,
+            },
+        ];
+
+        let variant1 = vec![
+            FormattedEntry {
+                name: ".".to_string(),
+                path: ".".to_string(),
+                prefix: String::new(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "b".to_string(),
+                path: b_path.clone(),
+                prefix: "├── ".to_string(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "c".to_string(),
+                path: bc_path.clone(),
+                prefix: "│   └── ".to_string(),
+                link: None,
+            },
+            FormattedEntry {
+                name: "a".to_string(),
+                path: "a".to_string(),
+                prefix: "└── ".to_string(),
+                link: None,
+            },
+        ];
+
+        assert!(formatted == variant0 || formatted == variant1);
+    }
+}
+
+
+==> ./src/output.rs
+
+use super::diagram_formatting::FormattedEntry;
+use lscolors::{self, LsColors, Style};
+use std::env;
+use std::fmt::Display;
+use std::fs::File;
+use std::io::{self, Write};
+use std::path::PathBuf;
+use termcolor::{BufferWriter, Color, ColorChoice, ColorSpec, WriteColor};
+
+fn color_print<T>(text: T, color: Option<&ColorSpec>) -> bool
+where
+    T: Display,
+{
+    if let Some(color_spec) = color {
+        let stdout = BufferWriter::stdout(ColorChoice::Auto);
+        let mut buffer = stdout.buffer();
+        buffer
+            .set_color(color_spec)
+            .and_then(|_| write!(&mut buffer, "{}", text))
+            .and_then(|_| buffer.reset())
+            .and_then(|_| stdout.print(&buffer))
+            .is_ok()
+    } else {
+        print!("{}", text);
+        true
+    }
+}
+
+pub fn print_entries(entries: &[FormattedEntry], create_alias: bool, lscolors: Option<&LsColors>) {
+    let number_color = lscolors.map(|_| ColorSpec::new().set_fg(Some(Color::Red)).to_owned());
+    for (index, entry) in entries.iter().enumerate() {
+        if create_alias {
+            print!("{}[", entry.prefix);
+
+            color_print(index, number_color.as_ref());
+            print!("] ");
+        } else {
+            print!("{}", entry.prefix);
+        }
+
+        let spec = lscolors.map(|c| {
+            c.style_for_path(&entry.path)
+                .map(convert_to_color_spec)
+                .unwrap_or_default()
+        });
+        color_print(&entry.name, spec.as_ref());
+        println!()
+    }
+}
+
+fn convert_color(color: &lscolors::Color) -> Color {
+    match color {
+        lscolors::Color::RGB(r, g, b) => Color::Rgb(*r, *g, *b),
+        lscolors::Color::Fixed(n) => Color::Ansi256(*n),
+        lscolors::Color::Black => Color::Black,
+        lscolors::Color::Red => Color::Red,
+        lscolors::Color::Green => Color::Green,
+        lscolors::Color::Yellow => Color::Yellow,
+        lscolors::Color::Blue => Color::Blue,
+        lscolors::Color::Magenta => Color::Magenta,
+        lscolors::Color::Cyan => Color::Cyan,
+        lscolors::Color::White => Color::White,
+
+        // bright colors don't have a direct alternative in termcolor::color
+        // translate them to "ansi 256" colors using the same value as used
+        // in to_ansi_term_color
+        lscolors::Color::BrightBlack => Color::Ansi256(8),
+        lscolors::Color::BrightRed => Color::Ansi256(9),
+        lscolors::Color::BrightGreen => Color::Ansi256(10),
+        lscolors::Color::BrightYellow => Color::Ansi256(11),
+        lscolors::Color::BrightBlue => Color::Ansi256(12),
+        lscolors::Color::BrightMagenta => Color::Ansi256(13),
+        lscolors::Color::BrightCyan => Color::Ansi256(14),
+        lscolors::Color::BrightWhite => Color::Ansi256(15),
+    }
+}
+
+fn convert_to_color_spec(style: &Style) -> ColorSpec {
+    let mut spec = ColorSpec::new();
+
+    if let Some(color) = &style.foreground {
+        spec.set_fg(Some(convert_color(color)));
+    }
+
+    if let Some(color) = &style.background {
+        spec.set_bg(Some(convert_color(color)));
+    }
+
+    spec.set_bold(style.font_style.bold);
+    spec.set_italic(style.font_style.italic);
+    spec.set_underline(style.font_style.underline);
+
+    spec
+}
+
+#[cfg(target_os = "windows")]
+fn open_alias_file_with_suffix(suffix: &str) -> io::Result<File> {
+    let file_name = format!(
+        "tre_aliases_{}.{}",
+        env::var("USERNAME").unwrap_or_else(|_| "".to_string()),
+        suffix
+    );
+    let home = env::var("HOME").unwrap_or_else(|_| r".".to_string());
+    let tmp = env::var("TEMP").unwrap_or(home);
+    let path: PathBuf = [tmp, file_name].iter().collect();
+    let file = File::create(&path);
+    if file.is_err() {
+        eprintln!("[tre] failed to open {:?}", path);
+    }
+
+    file
+}
+
+#[cfg(target_os = "windows")]
+pub fn create_edit_aliases(editor: &str, entries: &[FormattedEntry]) {
+    let powershell_alias = open_alias_file_with_suffix("ps1");
+    if let Ok(mut alias_file) = powershell_alias {
+        for (index, entry) in entries.iter().enumerate() {
+            let editor = if editor.is_empty() {
+                "Start-Process"
+            } else {
+                editor
+            };
+            let result = writeln!(
+                &mut alias_file,
+                "doskey /exename=pwsh.exe e{}={} {}\ndoskey /exename=powershell.exe e{}={} {}",
+                index, editor, entry.path, index, editor, entry.path,
+            );
+
+            if result.is_err() {
+                eprintln!("[tre] failed to write to alias file.");
+            }
+        }
+    }
+
+    let cmd_alias = open_alias_file_with_suffix("bat");
+    if let Ok(mut alias_file) = cmd_alias {
+        for (index, entry) in entries.iter().enumerate() {
+            let editor = if editor.is_empty() { "START" } else { editor };
+            let result = writeln!(
+                &mut alias_file,
+                "doskey /exename=cmd.exe e{}={} {}",
+                index, editor, entry.path,
+            );
+
+            if result.is_err() {
+                eprintln!("[tre] failed to write to alias file.");
+            }
+        }
+    }
+}
+
+#[cfg(not(target_os = "windows"))]
+fn open_alias_file() -> io::Result<File> {
+    let user = env::var("USER").unwrap_or_else(|_| "".to_string());
+    let alias_file = format!("/tmp/tre_aliases_{}", &user);
+    let path: PathBuf = [alias_file].iter().collect();
+    let file = File::create(&path);
+    if file.is_err() {
+        eprintln!("[tre] failed to open {:?}", path);
+    }
+
+    file
+}
+
+#[cfg(not(target_os = "windows"))]
+pub fn create_edit_aliases(editor: &str, entries: &[FormattedEntry]) {
+    let alias = open_alias_file();
+    if let Ok(mut alias_file) = alias {
+        for (index, entry) in entries.iter().enumerate() {
+            let result = writeln!(
+                &mut alias_file,
+                "alias e{}=\"eval '{} \\\"{}\\\"'\"",
+                index,
+                editor,
+                entry.path.replace('\'', "\\'")
+            );
+
+            if result.is_err() {
+                eprintln!("[tre] failed to write to alias file.");
+            }
+        }
+    }
+}
+
+
+==> ./src/main.rs
+
+use clap::Parser;
+
+mod cli;
+mod diagram_formatting;
+mod file_tree;
+mod json_formatting;
+mod output;
+mod path_finders;
+mod tre;
+mod file_ops;
+use file_ops::*;
+
+fn main() {
+    let inputs = cli::Interface::parse();
+
+    // 👇 Read a single file
+    if let Some(path) = &inputs.read_file {
+        match read_file(path) {
+            Ok(content) => println!("📄 File content:\n{content}"),
+            Err(e) => eprintln!("❌ Failed to read file: {e}"),
+        }
+        return;
+    }
+
+    // 👇 Write "Hello from tre!" to a file (basic write)
+    if let Some(path) = &inputs.write_file {
+        if let Err(e) = write_file(path, "Hello from tre!") {
+            eprintln!("❌ Failed to write to file: {e}");
+        } else {
+            println!("✅ Successfully wrote to {path}");
+        }
+        return;
+    }
+
+    // 👇 Write ALL source files into an output file (recursive content dump)
+    if let Some(path) = &inputs.dump_tree_files_to {
+        if let Err(e) = write_all_files_to(".", path) {
+            eprintln!("❌ Failed to dump files recursively: {e}");
+        } else {
+            println!("✅ Project contents dumped into {path}");
+        }
+        return;
+    }
+
+    // 👇 Default: run tre
+    let options: tre::RunOptions = inputs.into();
+    tre::run(options);
+}
+
+
+==> ./src/cli.rs
+
+use clap::{ArgEnum, Parser};
+
+#[derive(ArgEnum, Clone, Debug, PartialEq)]
+pub enum Coloring {
+    Automatic,
+    Always,
+    Never,
+}
+
+impl core::str::FromStr for Coloring {
+    type Err = String;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s.to_lowercase().as_str() {
+            "never" => Coloring::Never,
+            "always" => Coloring::Always,
+            _ => Coloring::Automatic,
+        })
+    }
+}
+
+
+#[derive(Debug, Clone, Parser)]
+#[clap(author, version, about)]
+pub struct Interface {
+    /// Print all files and directories, including hidden ones.
+    #[clap(long, short, parse(from_flag))]
+    pub all: bool,
+
+    /// Use normal print despite gitignore settings. '-a' has higher priority.
+    #[cfg(not(target_os = "windows"))]
+    #[clap(long, short, parse(from_flag))]
+    pub simple: bool,
+
+    /// Only list directories in output.
+    #[clap(long, short, parse(from_flag))]
+    pub directories: bool,
+
+    /// Create aliases for displayed results (like e42 to open with $EDITOR).
+    #[clap(long, short, value_name = "COMMAND")]
+    pub editor: Option<Option<String>>,
+
+    /// Output JSON instead of tree diagram.
+    #[clap(long, short, parse(from_flag))]
+    pub json: bool,
+
+    /// Limit depth of the tree in output.
+    #[clap(long, short)]
+    pub limit: Option<usize>,
+
+    /// Exclude paths matching a regex pattern. Repeatable.
+    #[clap(long, short = 'E', value_name = "PATTERN")]
+    pub exclude: Vec<String>,
+
+    /// When to color the output.
+    #[clap(
+        arg_enum,
+        long,
+        short,
+        value_name = "WHEN",
+        default_value = "automatic"
+    )]
+    pub color: Coloring,
+
+    /// Use absolute paths for editor aliases.
+    #[clap(short, long)]
+    pub portable: bool,
+
+    /// Path to list (default: current directory).
+    #[clap(default_value = ".")]
+    pub path: String,
+
+    /// 🆕 Read contents from a file
+    #[clap(long, value_name = "FILE")]
+    pub read_file: Option<String>,
+
+    /// 🆕 Write a simple message to a file
+    #[clap(long, value_name = "FILE")]
+    pub write_file: Option<String>,
+
+    /// 🆕 Recursively write all source files to a single file
+    #[clap(long, value_name = "FILE")]
+    pub dump_tree_files_to: Option<String>,
+}
+
+
+#[cfg(test)]
+mod test {
+    use super::Coloring;
+    use core::str::FromStr;
+    #[test]
+    fn coloring_parsing() {
+        assert_eq!(Coloring::Always, Coloring::from_str("always").unwrap());
+        assert_eq!(Coloring::Never, Coloring::from_str("never").unwrap());
+        assert_eq!(
+            Coloring::Automatic,
+            Coloring::from_str("automatic").unwrap()
+        );
+        assert_eq!(Coloring::Always, Coloring::from_str("AlwAys").unwrap());
+        assert_eq!(Coloring::Never, Coloring::from_str("NeveR").unwrap());
+        assert_eq!(
+            Coloring::Automatic,
+            Coloring::from_str("AutoMATic").unwrap()
+        );
+        assert_eq!(Coloring::Automatic, Coloring::from_str("xxx").unwrap());
+    }
+}
+
+
