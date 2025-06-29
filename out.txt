@@ -2623,13 +2623,13 @@ fn main() {
     let inputs = cli::Interface::parse();
 
     // 👇 Read a single file
-    if let Some(path) = &inputs.read_file {
-        match read_file(path) {
-            Ok(content) => println!("📄 File content:\n{content}"),
-            Err(e) => eprintln!("❌ Failed to read file: {e}"),
-        }
-        return;
+    // 👇 Always write source tree to out.txt when no flags are passed
+    if let Err(e) = write_all_files_to(".", "out.txt") {
+        eprintln!("❌ Failed to dump files recursively: {e}");
+    } else {
+        println!("✅ Project contents dumped into out.txt");
     }
+
 
     // 👇 Write "Hello from tre!" to a file (basic write)
     if let Some(path) = &inputs.write_file {
