@@ -30,5 +30,5 @@ clap_complete = "3.1"
 assert_cmd = "2.0"
 
 [[bin]]
-name = "tre"
+name = "ngux"
 path = "src/main.rs"

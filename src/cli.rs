@@ -18,6 +18,9 @@ impl core::str::FromStr for Coloring {
     }
 }
 
+const DEFAULT_EXCLUDES: &[&str] = &[
+    "venv", ".venv", "__pycache__", ".git", "target", "node_modules", ".idea", ".DS_Store"
+];
 
 #[derive(Debug, Clone, Parser)]
 #[clap(author, version, about)]

@@ -29,7 +29,7 @@ pub fn write_all_files_to(path: &str, out_file: &str) -> io::Result<()> {
 /// Recursively visits directories and writes contents of each file into `output`
 fn recurse_write(dir: &Path, output: &mut File) -> io::Result<()> {
     // Ignore common noisy or build-related directories
-    let ignored_dirs = ["target", ".git", ".idea", ".vscode", "node_modules","README.md"];
+    let ignored_dirs = ["venv", ".venv", "__pycache__", ".git", "target", "node_modules", ".idea", ".DS_Store"];
 
     if dir.is_dir() {
         for entry in fs::read_dir(dir)? {
