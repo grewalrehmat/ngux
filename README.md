@@ -3,20 +3,20 @@
 **ngux** is a modern, extensible, and enhanced alternative to the classic `tree` command—written in Rust.  
 It supports recursive file listing, filtering, JSON output, editor shortcuts, and even file content dumping 📁📄.
 
-## ✨ Features
+##  Features
 
-- 📂 Pretty tree view of file structure
-- ⚙️ CLI flags for customization (`--all`, `--json`, `--limit`, etc.)
-- 🎨 Smart color output
-- 📑 Dump contents of project files into one output file (`--dump-tree-files-to`)
-- ✍️ Read from/write to files directly via CLI
-- ⚡ Fast and efficient (Rust, baby!)
+-  Pretty tree view of file structure
+-  CLI flags for customization (`--all`, `--json`, `--limit`, etc.)
+-  Smart color output
+-  Dump contents of project files into one output file (`--dump-tree-files-to`)
+-  Read from/write to files directly via CLI
+-  Fast and efficient 
 
 ---
 
-## 🚀 Installation
+##  Installation
 
-### 📦 Install Globally from Source
+###  Install Globally from Source
 
 1. Make sure you have [Rust & Cargo](https://rustup.rs/) installed.
 2. Clone this repo:
