@@ -19,18 +19,21 @@ It supports recursive file listing, filtering, JSON output, editor shortcuts, an
 ###  Install Globally from Source
 
 1. Make sure you have [Rust & Cargo](https://rustup.rs/) installed.
+
 2. Clone this repo:
    ```bash
-   git clone https://github.com/yourusername/ngux.git
-   cd ngux
+      git clone https://github.com/yourusername/ngux.git
    ```
 3. Install it globally:
 
   ```bash
-    cargo install --path .
+     cd ngux
+     cargo install --path .
   ```
 4. Make sure $HOME/.cargo/bin is in your PATH:
 
   ```bash
-    export PATH="$HOME/.cargo/bin:$PATH"
+     export PATH="$HOME/.cargo/bin:$PATH"
   ```
+5. Now `ngux` command should be globally available ,type ngux for the cli to run.
+6. It will create a `out.txt` file in the directory that has all the file dump.
