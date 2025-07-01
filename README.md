@@ -1,7 +1,11 @@
 # 🌳 ngux
 
-**ngux** is a modern, extensible, and enhanced alternative to the classic `tree` command—written in Rust.  
-It supports recursive file listing, filtering, JSON output, editor shortcuts, and even file content dumping 📁📄.
+**ngux** is a modern, extensible, and enhanced alternative to the classic `tree` command—written in Rust. 
+
+
+The tree command that I built on was build by dduan here is the repo link -> https://github.com/dduan/tre 
+
+It supports recursive file listing, filtering, editor shortcuts, and even file content dumping.
 
 ##  Features
 
